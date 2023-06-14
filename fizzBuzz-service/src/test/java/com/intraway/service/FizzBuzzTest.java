@@ -23,4 +23,12 @@ public class FizzBuzzTest {
         Assert.assertNotNull(bodyCorrect);
     }
 
+    @Test
+    @SneakyThrows
+    public void proccessFizzBuzzOne() {
+        BodyCorrect bodyCorrect = fizzBuzzService.processFizzBuzz(1, 15);
+        System.out.println(bodyCorrect);
+        Assert.assertNotNull(bodyCorrect);
+    }
+
 }

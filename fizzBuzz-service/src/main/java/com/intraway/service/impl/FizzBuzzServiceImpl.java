@@ -23,11 +23,10 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
     private String foundFizzBuzz(int min, int max){
         String message = "";
         for(int i = min; i <= max; i++){
-            String tempMessage = FizzBuzz(i);
-            message += tempMessage.isEmpty() ? i +"," : tempMessage;
+            message += FizzBuzz(i);
         }
 
-        return message;
+        return message.substring(0, message.length() -1);
 
     }
 
@@ -39,7 +38,7 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
         if(multipleOf(num,5)){
             message+="Buzz";
         }
-        return message;
+        return message.isEmpty() ? num +"," : message +",";
     }
 
     private String resolveDescription(String message){
