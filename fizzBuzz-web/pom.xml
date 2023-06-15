@@ -24,6 +24,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.intraway</groupId>
+			<artifactId>fizzBuzz-service</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
@@ -42,6 +48,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.1.1.RELEASE</version>
 
 				<executions>
 					<execution>

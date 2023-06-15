@@ -9,6 +9,13 @@
 	</parent>
 	<artifactId>fizzBuzz-repository</artifactId>
 	<name>fizzBuzz-repository</name>
-	<packaging>jar</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.intraway</groupId>
+			<artifactId>fizzBuzz-util</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	</dependencies>
 
 </project>

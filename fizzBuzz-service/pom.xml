@@ -30,6 +30,12 @@
 
 		<dependency>
 			<groupId>com.intraway</groupId>
+			<artifactId>fizzBuzz-repository</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.intraway</groupId>
 			<artifactId>fizzBuzz-util</artifactId>
 			<version>1.0.0</version>
 		</dependency>

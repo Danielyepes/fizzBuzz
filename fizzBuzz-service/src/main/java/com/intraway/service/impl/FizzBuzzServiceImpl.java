@@ -1,23 +1,44 @@
 package com.intraway.service.impl;
 
 import com.intraway.dto.BodyCorrect;
-import com.intraway.exception.CustomErrorException;
+import com.intraway.entity.Response;
+import com.intraway.exception.BadRequestException;
+import com.intraway.repository.ResponseRepository;
 import com.intraway.service.FizzBuzzService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class FizzBuzzServiceImpl implements FizzBuzzService {
 
-    @Override
-    public BodyCorrect processFizzBuzz(int min, int max) throws CustomErrorException {
-    	validate(min,max);
+    @Autowired
+    ResponseRepository responseRepository;
 
+    @Override
+    public BodyCorrect processFizzBuzz(int min, int max) throws BadRequestException {
+        log.info("Execution processFizzBuzz min{} , max{}", min,max);
+        //save data in repository
+        saveData(min,max);
+
+        validate(min,max);
         String fizzBuzz  = foundFizzBuzz(min,max);
+
         BodyCorrect bodyCorrect = BodyCorrect.builder().timestamp(
                 String.valueOf(System.currentTimeMillis()))
                 .description(resolveDescription(fizzBuzz)).list(fizzBuzz).build();
 
+
         return bodyCorrect;
+    }
+
+    private void saveData(int min, int max) {
+        log.info("saving data min {}, max {}", min, max);
+        //save transaction in repository
+        Response res = Response.builder()
+                .min(min).max(max).build();
+        responseRepository.save(res);
     }
 
     private String foundFizzBuzz(int min, int max){
@@ -53,9 +74,9 @@ public class FizzBuzzServiceImpl implements FizzBuzzService {
         }
     }
 
-    private void validate(int min, int max) throws CustomErrorException {
-		if(min >max) {
-			throw  new CustomErrorException("Los parámetros enviados son incorrectos");
+    private void validate(int min, int max) throws BadRequestException {
+		if(min > max) {
+			throw new BadRequestException("Los parámetros enviados son incorrectos");
 		}
 	}
 
