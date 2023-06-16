@@ -1,15 +1,18 @@
 package com.intraway.service;
 
 import com.intraway.dto.BodyCorrect;
+import com.intraway.exception.BadRequestException;
 import com.intraway.repository.ResponseRepository;
 import com.intraway.service.impl.FizzBuzzServiceImpl;
 import lombok.SneakyThrows;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
 public class FizzBuzzTest {
@@ -22,18 +25,25 @@ public class FizzBuzzTest {
 
     @Test
     @SneakyThrows
-    public void proccessFizzBuzz() {
+    void proccessFizzBuzz() {
         BodyCorrect bodyCorrect = fizzBuzzService.processFizzBuzz(1, 3);
-        System.out.println(bodyCorrect);
-        Assert.assertNotNull(bodyCorrect);
+
+        assertNotNull(bodyCorrect);
     }
 
     @Test
     @SneakyThrows
-    public void proccessFizzBuzzOne() {
+    void proccessFizzBuzzOne() {
         BodyCorrect bodyCorrect = fizzBuzzService.processFizzBuzz(1, 15);
-        System.out.println(bodyCorrect);
-        Assert.assertNotNull(bodyCorrect);
+
+        assertNotNull(bodyCorrect);
+    }
+
+    @Test
+    @SneakyThrows
+    void proccessFizzBuzzException() {
+
+        assertThrows(BadRequestException.class, ()-> fizzBuzzService.processFizzBuzz(5, -1));
     }
 
 }
