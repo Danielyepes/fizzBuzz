@@ -25,7 +25,7 @@ public class FizzBuzzTest {
 
     @Test
     @SneakyThrows
-    void proccessFizzBuzz() {
+    public void proccessFizzBuzz() {
         BodyCorrect bodyCorrect = fizzBuzzService.processFizzBuzz(1, 3);
 
         assertNotNull(bodyCorrect);
@@ -33,7 +33,7 @@ public class FizzBuzzTest {
 
     @Test
     @SneakyThrows
-    void proccessFizzBuzzOne() {
+    public void proccessFizzBuzzOne() {
         BodyCorrect bodyCorrect = fizzBuzzService.processFizzBuzz(1, 15);
 
         assertNotNull(bodyCorrect);
@@ -41,7 +41,7 @@ public class FizzBuzzTest {
 
     @Test
     @SneakyThrows
-    void proccessFizzBuzzException() {
+    public void proccessFizzBuzzException() {
 
         assertThrows(BadRequestException.class, ()-> fizzBuzzService.processFizzBuzz(5, -1));
     }
